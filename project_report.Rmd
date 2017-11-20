@@ -1,0 +1,245 @@
+---
+title: 'Project 1: Statistics - Stroop Effect'
+author: "Luc Frachon"
+date: "27 septembre 2016"
+output: 
+    pdf_document:
+        fig_caption: yes
+
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(digits = 2)
+require(ggplot2)
+```
+
+# Abstract
+
+This study provides statistical evidence for the Stroop effect. We find that within 95% confidence, the time taken to name the colours is 5.88 to 10.05 seconds greater in the incongruent condition than in the congruent one.
+The difference is highly statistically significant and its effect size is over 1.6 standard deviation.
+
+-----------
+
+# Introduction
+
+```{r load_data}
+stroop_data <- read.csv(file = "stroopdata.csv")
+```
+
+This study is performed as part of Project 1 in the Udacity Data Analyst Nanodegree. We are tring to replicate the Stroop effect by subjecting participants to a test and infering the results from a statistical point of view.
+
+This effect was named after John Ridley Stroop, who researched it in his [1935 paper](#references)$^1$ (athough it seems that the effect had previously been discovered and researched earlier in [Germany](#references)$^2$). 
+
+## Experimental design
+
+A sample of 24 participants (supposed to have been randomly selected from the population of interest) is asked to name a set of colours in two conditions:
+
+* *Congruent words:* Colour names are written in the colour that they represent - e.g. $\textcolor{red}{RED}$, $\textcolor{blue}{BLUE}$ etc.
+* *Incongruent words:* Colour names are printed in colours that do not match them - e.g. $\textcolor{red}{YELLOW}$, $\textcolor{green}{WHITE}$ etc.
+
+The time taken by each participant to name each set of colours is recorded.
+
+# Description of statistical test
+
+## Variables
+
+* **Independent variable:** Congruent or incongruent condition
+* **Dependent variable:** Time required to name each set of colours (completion time)
+
+## Assumptions on variables
+
+This statistical test makes certain assumptions:
+
+* The variable of interest (completion time) is a ratio variable: There is a meaningful zero value and a ratio of 2 between two measurements means twice as much time to complete the assignment.
+* As stated above, we assume that the sampling was performed randomly from the population of interest. This is an essential condition to be able to infer conclusions on the population from the statistical tests performed on the sample.
+* The difference scores (introduced in section Statistical Test - New dependent variable) are linked through repeated measurement.
+* We assume that scores and difference scores are normally distributed in the population.
+
+## Test type
+
+Since we only have one sample that goes through two different experiments, we are running a **dependent t-test with paired samples (two conditions)**.
+
+## Convention
+
+Let us define the following symbols:
+
+* $\mu^{(C)}$: *population mean, congruent condition*
+* $\mu^{(I)}$: *population mean, incongruent condition*
+
+More generally, the $(C)$ superscript refers to the congruent condition while $(I)$ refers to incongruent. Thus, we also define:
+
+* $X_i^{(C)}$: $i^{th}$ observation in the congruent condition
+* $X_i^{(I)}$: $i^{th}$ observation in the incongruent condition
+
+## Hypotheses and alpha level
+
+The Stroop effect is a well documented phenomenon; we therefore expect the average completion time in the incongruent situation to be longer than in the congruent condition. We therefore run a directional test:
+
+$$H_0: \mu^{(I)} \leq \mu^{(C)}$$
+$$H_A: \mu^{(I)} > \mu^{(C)}$$
+
+Given the fairly small sample sizes, we do not want to be too agressive when setting the alpha level for significance. We choose to set $\alpha = .05$.
+
+# Descriptive statistics
+
+The full dataset for both conditions (and the difference in task completion times for each individual) are provided in the appendix. Both experiments use the same sample, of size $n = 24$.  
+
+```{r descriptive_stats}
+n <- nrow(stroop_data)
+mu_c <- mean(stroop_data$Congruent)
+mu_i <- mean(stroop_data$Incongruent)
+s_c <- sd(stroop_data$Congruent)
+s_i <- sd(stroop_data$Incongruent)
+```
+
+* **Sample means:**
+    + $\bar{X}^{(C)}=$ `r mu_c` 
+    + $\bar{X}^{(I)}=$ `r mu_i`
+
+* **Sample standard deviations:**
+    + $s^{(C)}=$ `r s_c` 
+    + $s^{(I)}=$ `r s_i`
+
+* **Sample distributions:**
+
+```{r sample_distributions, include=TRUE, fig.width=4, fig.height=2.5, fig.cap="Boxplot of sample distributions for Congruent and Incongruent conditions"}
+long_data <- data.frame(
+    times = c(stroop_data$Congruent, stroop_data$Incongruent),
+    condition = c(rep("Congruent", n), rep("Incongruent", n))
+)
+stat_lines <- data.frame(condition = c("Congruent", "Incongruent"), means = c(mu_c, mu_i), sds = c(s_c, s_i))
+std_devs <- data.frame(condition = c("Congruent", "Incongruent"), times = c(s_c, s_i))
+
+g <- ggplot(long_data, aes(x = condition, y = times)) +
+    geom_boxplot(colour = "brown") +
+    # facet_grid(condition ~.) +
+    theme_bw()
+g
+```
+
+From the distributions in figure 1, it seems that for this sample, completion times in the incongruent situation are indeed longer. The effect size seems considerable, although the two distributions overlap. The statistical test should help us assess whether this might be due to chance.
+There also seems to be more variability in the incongruent times.
+
+# Statistical t-test
+
+## New dependent variable
+
+We first define a new dependent variable $\Delta$ as the difference in completion times between the congruent and incongruent conditions:
+$$\Delta_i = X_i^{(I)} - X_i^{(C)}$$
+for each $i \in \{1, ..., n\}$
+
+```{r delta_distribution, include=TRUE, fig.width=4, fig.height=2.5, fig.cap="Distribution of the difference in completion times between congruent and incongruent conditions (bin size = 2s). The red vertical lines indicate the sample mean and sample mean +/- standard deviation."}
+stroop_data$delta <- stroop_data$Incongruent - stroop_data$Congruent
+d_bar <- mean(stroop_data$delta)
+s_d <- sd(stroop_data$delta)
+
+h <- ggplot(stroop_data, aes(x = delta)) +
+    geom_histogram(binwidth = 2., fill = "salmon", colour = "brown") +
+    theme_bw() +
+    geom_vline(aes(xintercept = d_bar), colour = "red", size = 2) +
+    geom_vline(aes(xintercept = d_bar - s_d), colour = "red", size = 1) +
+    geom_vline(aes(xintercept = d_bar + s_d), colour = "red", size = 1)
+h
+```
+
+We get the distribution shown in figure 2. Its statistics are: 
+
+* **Sample mean:**
+    + $\bar{\Delta}=$ `r d_bar` 
+
+* **Sample standard deviation:**
+    + $s_{\Delta}=$ `r s_d` 
+
+## New test hypotheses:
+
+As a result of introducing this new variable, our test hypotheses can be re-written as follows:
+
+$$H_0: \mu_{\Delta} \leq 0$$
+$$H_A: \mu_{\Delta} > 0$$
+
+
+# Test results:
+
+## Estimation of significance
+
+Our test has one sample of size $n=$ `r n`, therefore it has $df=$ `r n-1` degrees of freedom.
+From the t-table, we get the following critical value for $t$ at $\alpha=.05$:
+
+$$t_{.05}=1.714$$
+
+The standard error of the mean is given by:
+```{r standard_error}
+se_d <- s_d / sqrt(n)
+```
+$$S_{\bar{\Delta}} = \frac{s_{\Delta}}{\sqrt{n}}$$
+And we find that $S_{\bar{\Delta}} \simeq$ `r se_d`.
+
+We can now calculate the t-statistic with $df=$ `r n-1`:
+```{r t_statistic}
+t_stat <- d_bar / se_d
+```
+
+$$t=\frac{\bar{\Delta}}{S_{\bar{\Delta}}}$$
+Thus $t(23) \simeq$ `r t_stat`.
+
+$t > t_{.05}$ and $p<.0001$ which is extremely significant, so **we reject $H_0$**.
+
+The confidence interval for the difference in completion time is given by the following equation:
+
+$$CI=\bar{\Delta} \pm t_{.025}.S_{\bar{\Delta}}$$
+
+Thus: $CI=($ `r d_bar - 2.096 * se_d`, `r d_bar + 2.096 * se_d` )
+
+In other words, we have 95% confidence that in the incongruent condition, the population of interest will take `r d_bar - 2.096 * se_d` to `r d_bar + 2.096 * se_d` seconds more to complete the task.
+
+## Effect size
+We calculate Cohen's $d$ to assess the magnitude of the Stroop effect on this sample:
+```{r cohens_d}
+cohens_d <- d_bar / s_d
+```
+
+$$d=\frac{\bar{\Delta}}{s_{\Delta}}$$
+
+Thus $d \simeq$ `r cohens_d`.
+This can be considered as a very large effect size, over 1.6 times the sample standard deviation.
+
+# Discussion: Possible causes of the Stroop effect
+
+Several theories have been used to explain the Stroop effect. The most widely accepted cause is given by the ["Automaticity model" theory](#references)$^3$.  
+According to this theory, the adult brain is "wired" to recognise words automatically without much effort. This process cannot be turned off.
+Conversely, recognising colours requires more effort. As the brain automatically reads words, the participant needs to produce a conscious effort not to say the first word that comes to mind but to look for the name of the hue they recognised. This process increases the time required to complete the task.  
+
+This theory seems to fit with our intuitive perception of what is occuring when completing the colour recognition task. It relies on theories about brain plasticity and its ability to create "pathways" (synaptical connections) that "automate" some tasks, ie. allows them to be processed with little or no conscious effort. However if the theory is correct, then given enough practice, the brain should also be able to create connections to automate colour recognition even in the presence incongruent signals. Since this wiring pattern is new, one would expect larger improvement in response times in the incongruent condition than in the congruent one (where the pathways are already in place).  
+
+This is precisely what [Stroop's paper](#references)$^1$ finds, with an overall improvement of 33.9% for incongruent signals v. 13.9% in the congruent condition. This tends to lend this model credibility. Of course, competing models would need to be evaluated as well against different criteria.
+
+# Conclusion
+
+This test establishes with a very high level of significance that the Stroop effect observed in this sample is very unlikely to be due to chance. The effect size is also very large. 
+We do not know the details of the experimental conditions or if the order in which participant took either test was set at random. However assuming that this is the case and that all other factors were held constant, the statistical results allow us to conclude that the incongruent condition most likely causes a large increase in completion times.  
+
+This test provides no information that could help us discriminate between different possible explanations for the Stroop effect, however we argue that the most commonly accepted cause - the Automaticity Model -- is consistent with the findings that John Ridley Stroop mentionned in his original publication.
+
+
+-------------
+
+# References
+
+$^1$: http://psychclassics.yorku.ca/Stroop/ "John Ridley Stroop (1935); \"Studies of interference in serial verbal reactions\"; *Journal of Experimental Psychology*, 18, 643-662."  
+$^2$: https://en.wikipedia.org/wiki/Stroop_effect#cite_ref-Jaensch_2-0 "Wikipedia page on the Stroop Effect."  
+$^3$: http://www.rit.edu/cla/gssp400/sbackground.html "Background on the Stroop effect."
+
+
+
+-------------
+
+# Appendix
+
+## Data set from experiments:
+
+```{r appendix}
+show(stroop_data)
+```

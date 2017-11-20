@@ -1,0 +1,163 @@
+plot(5,
+5,
+type="n",
+axes=FALSE,
+ann=FALSE,
+xlim=c(0, 10),
+ylim = c(0,10))
+plot(5,
+5,
+type="b",
+axes=FALSE,
+ann=FALSE,
+xlim=c(0, 10),
+ylim = c(0,10))
+plot(5,
+5,
+type="p",
+axes=FALSE,
+ann=FALSE,
+xlim=c(0, 10),
+ylim = c(0,10))
+x <- seq(0,2*pi,0.1)
+y <- sin(x)
+plot(x,
+y,
+xlab = expression(paste("Greek letter ", phi)),
+ylab = expression(paste("Greek letter ",mu)))
+require(rattle)
+library(RGtk2)
+library(RGtk2)
+require(rattle)
+data("iris")
+require(caret)
+intrain=createDataPartition(y = iris$Species, p=.7, ,list=F)
+train=iris[inTrain,]
+train=iris[intrain,]
+test=iris[-intrain,]
+modfit=train(Species~., method="rpart", data=training)
+modfit=train(Species~., method="rpart", data=train)
+fancyRpartPlot(modfit$finalModel)
+library(rattle)
+fancyRpartPlot(modfit$finalModel)
+library(rpart.plot)
+install.packages("rpart.plot")
+library(rpart.plot)
+fancyRpartPlot(modfit$finalModel)
+str(modFit)
+str(modfit)
+library(ElemStatLearn)
+install.packages("ElemStatLearn")
+library(ElemStatLearn)
+data(ozone)
+ozone = ozone[order(ozone$ozone), ]
+head(ozone)
+data(iris)
+inTrain = createDataPArtition(y=iris$Species, p=.7, list=F)
+inTrain = createDataPartition(y=iris$Species, p=.7, list=F)
+modFit=train(Species ~., data=training, methof ="rf", prox= T)
+training = iris[inTrain,]
+modFit = train(Species ~ ., data = training, method = "rf", prox = T)
+modFit
+getTree(modFit$finalModel, k =2)
+tree=getTree(modFit$finalModel, k =2)
+plot(tree)
+qplot(tree)
+irisP = classCenter(training[, c(3, 4)], training$species, modFit$finalModel$prox)
+irisP = classCenter(training[, c(3, 4)], training$Species, modFit$finalModel$prox)
+irisP
+modFit$finalModel$proximity
+str(modFit$finalModel$proximity)
+irisP=as.data.frame(irisP)
+irisP$Species=rownames(irisP)
+str(irisP)
+str(irisP)
+str(irisP$Species)
+p  =qplot(Petal.width, Petal.Length, col = Species, data = training) + geom_point(aes(x=Petal.Width, y = Petal.Length, col = Species), data = irisP)
+p
+p
+p
+p  =qplot(Petal.Width, Petal.Length, col = Species, data = training) + geom_point(aes(x=Petal.Width, y = Petal.Length, col = Species), data = irisP)
+p
+p  =qplot(Petal.Width, Petal.Length, col = Species, data = training) + geom_point(aes(x=Petal.Width, y = Petal.Length, col = Species), size = 5, shape = 4, data = irisP)
+p
+library(datasets)
+ls
+ls()
+data("cars")
+?cars
+?mtcars
+?harman23.cor
+data("Harman23.cor")
+?Harman23.cor
+str(Harman23.Cor)
+str(cars)
+str(Harman23.cor)
+summary(Harman23.cor)
+str(Harman23.cor[1])
+names(Harman23.cor[1])
+a=Harman23.cor[1]
+a
+data(Titanic)
+str(Titanic)
+data (Titanic)
+str(Titanic)
+summary(Titanic)
+library(ggplot2)
+load("data/corpus_train.RData")
+load("data/corpus_train.RData")
+2. This models need to be updated in near-real time to incorporate daily data streams.
+Export_4621.xls
+```
+library(xlsx)
+?read.xlsx
+?read.xlsx2
+N = 1000000
+pop = rnorm(N)
+n=1000
+spl = sample(pop, n)
+pop_mean = mean(pop)
+spl_mean = mean(spl)
+hist(pop)
+hist(pop, breaks = .1)
+hist(pop, breaks = 100)
+hist(spl, breaks = 100)
+hist(spl, breaks = 20)
+hist(spl, breaks = 20)
+hist(pop, breaks = 20)
+spl=as.data.frame(spl)
+names(spl) = value
+names(spl) = "val"
+spl
+head(spl)
+spl$err = spl$var - spl_mean
+spl$err = spl$val - spl_mean
+spl$sq_err = spl$err ^ 2
+biased_std = sum(spl$sq_err) / n
+?std
+std()
+stdev()
+ssdev()
+sdev()
+unbiased_std = sum(spl$sq_err) / (n - 1)
+pop = data.frame(val = pop)
+pop$err = pop$val - pop_mean
+pop$sqerr = pop$err ^2
+pop_std = sum(pop$sqerr) / N
+source('C:/Users/Luc/Google Drive/Data Science/DataNanodeg/Statistics/std_dev_comparison.R', echo=TRUE)
+std_devs = calculate_std_devs(pop, 10)
+pop
+source('C:/Users/Luc/Google Drive/Data Science/DataNanodeg/Statistics/std_dev_comparison.R', echo=TRUE)
+std_devs = calculate_std_devs(pop, 10)
+source('C:/Users/Luc/Google Drive/Data Science/DataNanodeg/Statistics/std_dev_comparison.R', echo=TRUE)
+std_devs = calculate_std_devs(pop$val, 10)
+std_devs
+pop_std
+source('C:/Users/Luc/Google Drive/Data Science/DataNanodeg/Statistics/std_dev_comparison.R', echo=TRUE)
+std_devs = calculate_std_devs(pop$val, 100)
+std_devs
+std_devs = calculate_std_devs(pop$val, 5)
+std_devs
+std_devs = calculate_std_devs(pop$val, 20)
+std_devs
+setwd("C:/Users/Luc/Google Drive/Data Science/DataNanodeg/P1")

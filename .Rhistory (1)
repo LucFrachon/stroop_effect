@@ -1,0 +1,512 @@
+cars$gear <- as.factor(mtcars$gear)
+with(cars, plot(hp, qsec))
+dev.off()
+with(cars, plot(hp, qsec))
+with(cars, plot(hp, disp))
+with(cars, plot(hp, cyl))
+with(cars, plot(disp, cyl))
+with(cars, plot(hp, mpg))
+with(cars, plot(vs, mpg))
+with(cars, plot(am, mpg))
+with(cars, plot(disp, mpg))
+with(cars, plot(cyl, mpg))
+with(cars, plot(hp, mpg))
+with(cars, plot(carb), mpg))
+with(cars, plot(carb, mpg))
+with(cars, plot(carb, cyl))
+with(cars, plot(hp, wt))
+with(cars, plot(hp, qsec))
+with(cars, plot(wt, qsec))
+lm(qsec ~ wt + hp)
+lm(cars$qsec ~ cars$wt + cars$hp)
+summary(lm(cars$qsec ~ cars$wt + cars$hp))
+qplot(data = cars, x= hp, y = qsec, colour=wt)
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = mtcars[[i]], y = mtcars$mpg, xlab = i, ylab = "MPG")
+}
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = mtcars[[i]], y = mtcars$mpg, xlab = i, ylab = "MPG", col = i)
+}
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i)
+}
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+with(cars, plot(hp, disp))
+summary(lm(cars$hp ~ disp + carb))
+summary(lm(cars$hp ~ cars$disp + cars$carb))
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+cSub <- cbind(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- with(cSub, lm(mpg ~ hp + wt + vs + factor(am))
+)
+cSub <- cbind(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(subC$mpg ~ subC$hp + subC$wt + subC$vs + factor(subC$am)))
+cSub <- cbind(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(subC$mpg ~ subC$hp + subC$wt + subC$vs + factor(subC$am))
+cSub <- cbind(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(cSub$mpg ~ cSub$hp + cSub$wt + cSub$vs + factor(cSub$am))
+cSub
+cSub <- data.frame(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(
+cSub <- data.frame(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(cSub$mpg ~ cSub$hp + cSub$wt + cSub$vs + factor(cSub$am))
+cSub <- data.frame(cars$mpg, cars$hp, cars$wt, cars$vs, cars$am)
+fit <- lm(cSub$mpg ~ cSub$hp + cSub$wt + cSub$vs + factor(cSub$am))
+cSub
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(cSub$mpg ~ cSub$hp + cSub$wt + cSub$vs + factor(cSub$am))
+summary(fit)
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt + factor(vs) + factor(am), data = cSub)
+summary(fit)$coef
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit2 <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit2)$coef
+summary(fit2)
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit)$coef
+fit <- lm(mpg ~ hp + wt + factor(am), data = subset(cSub, am == 0))
+fit <- lm(mpg ~ hp + wt, data = subset(cSub, am == 0))
+summary(fit)
+fit.0 <- lm(mpg ~ hp + wt, data = subset(cSub, am == 0))
+fit.1 = lm(mpg ~ hp + wt, data = subset(cSub, am == 1))
+summary(fit.1)
+qplot(cSub$mpg, cSub$hp, facets = . ~ cSub$am)
+qplot(cSub$mpg, cSub$hp, facets = .cSub$am)
+qplot(data = cSub, mpg, hp, facets = . am)
+qplot(data = cSub, mpg, hp, facets = .~ am)
+qplot(data = cSub, mpg, hp, facets = .~ am, smooth = "linear")
+qplot(data = cSub, mpg, hp, facets = .~ am, smooth = "loess")
+qplot(data = cSub, mpg, hp, facets = .~ am, smooth = method("loess")
+)
+qplot(data = cSub, mpg, hp, facets = .~ am)
+qplot(data = cSub, mpg, wt, facets = .~ am)
+qplot(data = cSub, mpg, hp, facets = .~ am)
+qplot(data = cSub, wt, mpg, facets = .~ am)
+qplot(data = cSub, hp, mpg, facets = .~ am)
+qplot(data = cSub, wt, mpg, facets = .~ am)
+qplot(data = cSub, hp, mpg, facets = .~ am)
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit)$coef
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1
+fit$soeff
+coef(fit)
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2]+coef(fit)[3], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit)$coef
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g2 = ggplot(cSub, aes(x = wt, y = mpg, colour = factor(am)))
+g2 = g2 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g2 = g2 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g2 = g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g2
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt * factor(am), data = cSub)
+summary(fit)$coef
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt * factor(am), data = cSub)
+summary(fit)$coef
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ (hp + wt) * factor(am), data = cSub)
+summary(fit)$coef
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ (hp + wt) + factor(am), data = cSub)
+summary(fit)$coef
+cars$hp
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = hp / mean(hp))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = hp / mean(hp))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g2 = ggplot(cSub, aes(x = wt, y = mpg, colour = factor(am)))
+g2 = g2 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g2 = g2 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g2 = g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g2
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(data = cars, size = hp / mean(hp))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(size = cars$hp / mean(cars$hp))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = factor(am)))
+g1 = g1 + geom_point(aes(size = wt))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+cars$wt
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)))
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + mean(wt), slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] + mean(wt), slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + mean(cars$wt), slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] + mean(cars$wt), slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4], slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+coef(fit)
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ (hp + wt) * factor(am), data = cSub)
+summary(fit)$coef
+coef(fit)
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4], slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+#g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4],
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 = ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 = g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 = g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+#g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4],
+#                      slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 = g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4],
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+coef(fit)[1]+coef(fit)[4]
+coef(fit)[2]+coef(fit)[5]
+g2 = ggplot(cSub, aes(x = wt, y = mpg, colour = factor(am)))
+g2 = g2 + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g2 = g2 + geom_abline(intercept = coef(fit)[1],+coef(fit)[3], slope = coef(fit)[2], size = 2)
+g2 = g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] + coef(fit)[4], slope = coef(fit)[2], size = 2)
+g2
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ (hp + wt) * factor(am), data = cSub)
+summary(fit)$coef
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4],
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt) , slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt)*0 , slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt)*0,
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt), slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3], slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) ,
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt), slope = coef(fit)[2], size = 2)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5], size = 2)
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, colour = wt))
+g1 <- g1 + geom_point(aes(shape = factor(am)), size = 4)
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt),
+slope = coef(fit)[2], size = 2, colour = "blue")
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5],
+size = 2, colour = "red")
+g1
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, colour = wt))
+g2 <- g2 + geom_point(aes(shape = factor(am)), size = 4)
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "blue")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "red")
+g2
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, size = wt * 2))
+g1 <- g1 + geom_point(aes(colour = factor(am)))
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt),
+slope = coef(fit)[2], size = 1, colour = "blue")
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5],
+size = 1, colour = "red")
+g1
+g1 <- ggplot(cSub, aes(x = hp, y = mpg, size = wt * 3))
+g1 <- g1 + geom_point(aes(colour = factor(am)))
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[3] * mean(cars$wt),
+slope = coef(fit)[2], size = 1, colour = "salmon")
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[3] + coef(fit)[6]) * mean(cars$wt),
+slope = coef(fit)[2] + coef(fit)[5],
+size = 1, colour = "lightblue")
+g1
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp / mean(hp) * 3))
+g2 <- g2 + geom_point(aes(colour = factor(am)))
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "blue")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "red")
+g2
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g2 <- g2 + geom_point(aes(colour = factor(am)))
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "blue")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "red")
+g2
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g2 <- g2 + geom_point(aes(colour = factor(am)))
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp)*0,
+slope = coef(fit)[3], size = 1, colour = "blue")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt)*0,
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "red")
+g2
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g2 <- g2 + geom_point(aes(colour = factor(am)))
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "blue")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "red")
+g2
+coef(fit)
+g2 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g2 <- g2 + geom_point(aes(colour = factor(am)))
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "salmon")
+g2 <- g2 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$wt),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "lightblue")
+g2
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+dev.off()
+par(mfrow = c(2, 5))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+a=summary(lm(cars$hp ~ cars$disp + cars$carb))
+str(a)
+a
+summary(lm(cars$qsec ~ cars$wt + cars$hp))
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit)$coef
+g1 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g1 <- g1 + geom_point(aes(colour = factor(am)))
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "salmon")
+g1 <- g1 + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+coef(fit)[2] * mean(cars$wt),
+slope = coef(fit)[3],
+size = 1, colour = "lightblue")
+g1
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit <- lm(mpg ~ (hp + wt) * factor(am), data = cSub)
+summary(fit)$coef
+g <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g <- g + geom_point(aes(colour = factor(am)))
+g <- g + geom_abline(intercept = coef(fit)[1] + coef(fit)[2] * mean(cars$hp),
+slope = coef(fit)[3], size = 1, colour = "salmon")
+g <- g + geom_abline(intercept = coef(fit)[1] + coef(fit)[4] +
+(coef(fit)[2] + coef(fit)[5]) * mean(cars$hp),
+slope = coef(fit)[3] + coef(fit)[6],
+size = 1, colour = "lightblue")
+g
+fit1 <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit)$coef
+summary(fit1)$coef
+g1 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g1 <- g1 + geom_point(aes(colour = factor(am)))
+g1 <- g1 + geom_abline(intercept = coef(fit1)[1] + coef(fit1)[2] * mean(cars$hp),
+slope = coef(fit1)[3], size = 1, colour = "salmon")
+g1 <- g1 + geom_abline(intercept = coef(fit1)[1] + coef(fit1)[4] +
+coef(fit1)[2] * mean(cars$hp),
+slope = coef(fit1)[3],
+size = 1, colour = "lightblue")
+g1
+fit0 = lm(mpg ~am, data=cars)
+coef(fit0)
+plot(fit)
+plot(cars$am, cars$mpg)
+pont(cars$am, cars$mpg)
+point(cars$am, cars$mpg)
+points(cars$am, cars$mpg)
+dev.off()
+points(cars$am, cars$mpg, type = "/n")
+plot(cars$am, cars$mpg, type = "/n")
+plot(cars$am, cars$mpg, type = "\n")
+dev.off()
+plot(cars$am, cars$mpg, type = "\n")
+points(cars$am, cars$mpg)
+abline(fit0$coefficients)
+t.test(mtcars$mpg ~ mtcars$am)
+am0=subset(cars, am = 0)
+am1 = subset(cars, am=1)
+t.test(mtcars$mpg ~ mtcars$am, alternative = c("less"))
+t.test(mtcars$mpg - mean(am0$mpg), alternative = c("less"))
+t.test(am1$mpg - mean(am0$mpg), alternative = c("less"))
+t.test(mtcars$mpg ~ mtcars$am, alternative = c("less"))
+cSub <- data.frame(mpg=cars$mpg, hp=cars$hp, wt=cars$wt, vs=cars$vs, am=cars$am)
+fit1 <- lm(mpg ~ hp + wt + factor(am), data = cSub)
+summary(fit1)$coef
+g1 <- ggplot(cSub, aes(x = wt, y = mpg, size = hp))
+g1 <- g1 + geom_point(aes(colour = factor(am)))
+g1 <- g1 + geom_abline(intercept = coef(fit1)[1] + coef(fit1)[2] * mean(cars$hp),
+slope = coef(fit1)[3], size = 1, colour = "salmon")
+g1 <- g1 + geom_abline(intercept = coef(fit1)[1] + coef(fit1)[4] +
+coef(fit1)[2] * mean(cars$hp),
+slope = coef(fit1)[3],
+size = 1, colour = "lightblue")
+g1
+fit1 <- lm(mpg ~ am, data = cars)
+summary(coef(fit1))
+summary(fit1)
+summary(fit1)$coef
+fit1$coefficients
+summary(fit1$coefficients)
+summary(fit1)$coef
+summary(fit1)$coef
+?t.test
+t.test(fit1$coefficients[1])
+fit1$coefficients[1]/fit1$coefficients[2]
+fit1 <- lm(mpg ~ am, data = cars)
+cs <- summary(fit1)$coef
+cs
+interval1 <- cs[1, 1] + c(-1, 1) * qt(0.975, df = fit1$df) * cs[1, 2]
+interval2 <- cs[2, 1] + c(-1, 1) * qt(0.975, df = fit1$df) * cs[2, 2]
+interval1 <- cs[1, 1] + c(-1, 1) * qt(0.975, df = fit1$df) * cs[1, 2]
+interval2 <- cs[2, 1] + c(-1, 1) * qt(0.975, df = fit1$df) * cs[2, 2]
+interval1
+interval2
+?mtcars
+print(paste("Automatic: ", round(cs2[1, 1] + cs[2, 1] * mean(cars$hp) +
+cs[3, 1] * mean(cars$wt), 3)))
+print(paste("Manual: ", round(cs2[1, 1] + cs2[4, 1] + (cs2[2, 1] + cs2[5, 1]) * mean(cars$hp) + (cs2[3, 1] + cs2[6, 1]) * mean(cars$wt), 3)))
+```{r fig.height = 4, echo = FALSE, message = FALSE}
+par(mfrow = c(2, 5), mar = c(1, 1, 1, 1))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+```
+par(mfrow = c(2, 5), mar = c(2, 1, 1, 1))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+par(mfrow = c(2, 5), mar = c(3, 1, 1, 1))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+par(mfrow = c(2, 5), mar = c(4, 1, 1, 1))
+for (i in 2:11){
+plot(x = cars[[i]], y = cars$mpg, xlab = i, ylab = "MPG", col = i + 3)
+}
+fit2 <- lm(mpg ~ (hp + wt) * factor(am), data = cars)
+cs2 <- summary(fit2)$coef
+cs2[, 1]
+setwd("~/Google Drive/Data Science/DataNanodeg/P1")
+install.packages("rmarkdown")
+stroop_data <- read.csv(file = "stroopdata.csv")
